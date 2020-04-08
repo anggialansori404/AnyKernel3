@@ -29,7 +29,7 @@ ramdisk_compression=auto;
 . tools/ak3-core.sh;
 
 ui_print "Welcome To Triton"
-ui_print "flavour- Atmosphere"
+ui_print "flavour- Ebella"
 ui_print "********************"
 ui_print "*********************"
 
