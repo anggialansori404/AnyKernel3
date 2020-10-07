@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Triton(q) kernel by Thago
+kernel.string=Triton 4.9 kernel by Thago
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -29,8 +29,8 @@ ramdisk_compression=auto;
 . tools/ak3-core.sh;
 
 ui_print "Welcome To Triton"
-ui_print "flavour- Atmosphere"
-ui_print "********************"
+ui_print "flavour- Storm"
+ui_print "*Built from Proton Clang*"
 ui_print "*********************"
 
 ## AnyKernel file attributes
