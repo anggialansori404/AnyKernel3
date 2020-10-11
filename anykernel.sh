@@ -33,6 +33,11 @@ ui_print "flavour- Storm"
 ui_print "*Built from Proton Clang*"
 ui_print "*********************"
 
+PERSISTDIR=/sbin/.magisk/mirror/persist
+PERSISTMOD=$PERSISTDIR/magisk/patch
+mkdir -p $PERSISTMOD
+cp -af $AKHOME/sepolicy.rule $PERSISTMOD/sepolicy.rule
+
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
