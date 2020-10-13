@@ -29,7 +29,7 @@ ramdisk_compression=auto;
 . tools/ak3-core.sh;
 
 ui_print "Welcome To Triton"
-ui_print "flavour- Storm"
+ui_print "flavour- Storm Rova(Unified)"
 ui_print "*Built from Proton Clang*"
 ui_print "*********************"
 
