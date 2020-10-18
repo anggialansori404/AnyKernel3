@@ -40,6 +40,7 @@ chmod -R 755 $ramdisk/sbin/*;
 chmod +x $ramdisk/sbin/spa
 chown -R root:root $ramdisk/*;
 
+patch_cmdline androidboot.usbconfigfs=true
 ## AnyKernel install
 dump_boot;
 
