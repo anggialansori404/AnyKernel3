@@ -43,10 +43,7 @@ chown -R root:root $ramdisk/*;
 ## AnyKernel install
 dump_boot;
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
-patch_cmdline androidboot.selinux androidboot.selinux=permissive
 
-chown system:system /sys/devices/platform/soc/78b7000.i2c/i2c-3/3-0014/enable_dt2w
-chmod 0664 /sys/devices/platform/soc/78b7000.i2c/i2c-3/3-0014/enable_dt2w
 chown system:system /proc/gesture/onoff
 chmod 0664 /proc/gesture/onoff
 
