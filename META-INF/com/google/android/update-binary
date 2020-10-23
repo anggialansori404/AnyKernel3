@@ -428,9 +428,6 @@ if [ $? != 0 ]; then
   abort;
 fi;
 
-mount -o remount,rw /vendor
-cp -f /tmp/anykernel/patch/thermal-engine.conf /vendor/etc/
-
 do_modules;
 
 debugging;

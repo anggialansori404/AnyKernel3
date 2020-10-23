@@ -47,6 +47,10 @@ patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
 chown system:system /proc/gesture/onoff
 chmod 0664 /proc/gesture/onoff
 
+mount -o remount,rw /vendor
+cp -f $home/patch/vendor/etc/thermal-engine.conf /vendor/etc/
+chmod 0664 /vendor/etc/thermal-engine.conf
+
 write_boot;
 ## end install
 
