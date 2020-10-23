@@ -48,8 +48,13 @@ chown system:system /proc/gesture/onoff
 chmod 0664 /proc/gesture/onoff
 
 mount -o remount,rw /vendor
+# Thermal conf
 cp -f $home/patch/vendor/etc/thermal-engine.conf /vendor/etc/
 chmod 0664 /vendor/etc/thermal-engine.conf
+
+# Post boot script
+cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
+chmod 0755 /vendor/bin/init.qcom.post_boot.sh
 
 write_boot;
 ## end install
