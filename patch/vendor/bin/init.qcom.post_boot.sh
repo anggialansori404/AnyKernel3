@@ -75,8 +75,6 @@ minfree_5="${minfree_4#*,}"
 
 vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
 echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-echo "15360,19200,23040,26880,34415,43737" > /sys/module/lowmemorykiller/parameters/minfree
-echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
 echo 100 > /sys/module/vmpressure/parameters/allocstall_threshold
 echo 4096 > /proc/sys/vm/min_free_kbytes
