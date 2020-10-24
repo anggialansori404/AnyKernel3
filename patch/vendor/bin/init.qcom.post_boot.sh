@@ -54,7 +54,8 @@ echo 0 > /sys/kernel/slab/zs_handle/store_user
         if [ -e /sys/kernel/slab/zspage ]; then
 echo 0 > /sys/kernel/slab/zspage/store_user
         fi
-
+	echo 80 > /proc/sys/vm/swappiness
+	echo 10 > /proc/sys/vm/dirty_ratio
         mkswap /dev/block/zram0
         swapon /dev/block/zram0 -p 32758
     fi
@@ -78,6 +79,7 @@ echo "15360,19200,23040,26880,34415,43737" > /sys/module/lowmemorykiller/paramet
 echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
 echo 100 > /sys/module/vmpressure/parameters/allocstall_threshold
+echo 4096 > /proc/sys/vm/min_free_kbytes
 }
 
 # Device releated changes
