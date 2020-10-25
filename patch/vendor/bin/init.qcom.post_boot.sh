@@ -3,7 +3,6 @@ function 8917_sched_dcvs_eas()
 {
     #governor settings
     echo 1 > /sys/devices/system/cpu/cpu0/online
-    echo "blu_schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     echo 0 > /sys/devices/system/cpu/cpufreq/schedutil/rate_limit_us
     #set the hispeed_freq
     echo 960000 > /sys/devices/system/cpu/cpufreq/schedutil/hispeed_freq
