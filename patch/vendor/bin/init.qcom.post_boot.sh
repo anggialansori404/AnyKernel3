@@ -99,6 +99,15 @@ echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
 # Enable timer migration to little cluster
 echo 1 > /proc/sys/kernel/power_aware_timer_migration
 
+# Set Read ahead values
+dmpts=$(ls /sys/block/*/queue/read_ahead_kb | grep -e dm -e mmc)
+echo 256 > /sys/block/mmcblk0/bdi/read_ahead_kb
+echo 256 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
+echo 256 > /sys/block/sda/queue/read_ahead_kb
+for dm in $dmpts; do
+    echo 256 > $dm
+done
+
 # Set Memory parameters
 configure_memory_parameters
 
