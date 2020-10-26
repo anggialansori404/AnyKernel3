@@ -56,6 +56,8 @@ chmod 0664 /vendor/etc/thermal-engine.conf
 cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
 chmod 0755 /vendor/bin/init.qcom.post_boot.sh
 
+mount -t pstore -o kmsg_bytes=8000 - /sys/fs/pstore
+
 write_boot;
 ## end install
 
