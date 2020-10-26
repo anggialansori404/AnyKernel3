@@ -109,6 +109,12 @@ for dm in $dmpts; do
     echo 256 > $dm
 done
 
+# Power saving features
+echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable
+echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable
+echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable
+echo N > /sys/module/lpm_levels/parameters/sleep_disabled
+
 # Set Memory parameters
 configure_memory_parameters
 
