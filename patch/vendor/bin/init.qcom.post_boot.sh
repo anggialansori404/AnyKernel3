@@ -62,6 +62,7 @@ echo 0 > /sys/kernel/slab/zspage/store_user
 }
 
 function configure_memory_parameters() {
+echo 1 > /proc/sys/vm/reap_mem_on_sigkill
 adj_series=`cat /sys/module/lowmemorykiller/parameters/adj`
 adj_1="${adj_series#*,}"
 set_almk_ppr_adj="${adj_1%%,*}"
@@ -75,7 +76,6 @@ minfree_5="${minfree_4#*,}"
 vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
 echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
- echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
 echo 100 > /sys/module/vmpressure/parameters/allocstall_threshold
 echo 4096 > /proc/sys/vm/min_free_kbytes
 }
