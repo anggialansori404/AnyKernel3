@@ -31,7 +31,10 @@ ramdisk_compression=auto;
 ui_print "Welcome To Triton"
 ui_print "flavour- Storm Rova(Unified)"
 ui_print "*Built from Proton Clang*"
+ui_print "Linux v4.9 "
 ui_print "*********************"
+ui_print " "
+ui_print " "
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
@@ -44,19 +47,30 @@ chown -R root:root $ramdisk/*;
 dump_boot;
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
 
-chown system:system /proc/gesture/onoff
-chmod 0664 /proc/gesture/onoff
+ui_print " "
+ui_print " "
+ui_print "Flashing Custom Thermal-engine conf"
+ui_print " "
+ui_print " "
 
 mount -o remount,rw /vendor
 # Thermal conf
 cp -f $home/patch/vendor/etc/thermal-engine.conf /vendor/etc/
 chmod 0664 /vendor/etc/thermal-engine.conf
 
+ui_print "Flashing Custom boot script (T-Weaks)"
+ui_print "Which brings you yet more Optimizations"
+
 # Post boot script
 cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
 chmod 0755 /vendor/bin/init.qcom.post_boot.sh
 
-mount -t pstore -o kmsg_bytes=8000 - /sys/fs/pstore
+ui_print " "
+ui_print " "
+ui_print "Done! Don't forget to follow @tboxxx for  more updates"
+ui_print "*** Enjoy! *****"
+ui_print "*******************"
+ui_print "***** Thago @thagoo *******"
 
 write_boot;
 ## end install
