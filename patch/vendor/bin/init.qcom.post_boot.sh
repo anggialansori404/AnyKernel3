@@ -100,6 +100,24 @@ echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
 # Enable timer migration to little cluster
 echo 1 > /proc/sys/kernel/power_aware_timer_migration
 
+# Addiyional
+echo 0 > /proc/sys/vm/page-cluster
+echo 10 > /proc/sys/vm/stat_interval
+echo 3 > /proc/sys/net/ipv4/tcp_fastopen
+echo 0 > /proc/sys/net/ipv4/tcp_syncookies
+echo 1 > /proc/sys/net/ipv4/tcp_ecn
+echo NEXT_BUDDY > /sys/kernel/debug/sched_features
+echo TTWU_QUEUE > /sys/kernel/debug/sched_features
+echo 1 > /dev/stune/top-app/schedtune.prefer_idle
+echo 1 > /dev/stune/top-app/schedtune.boost
+
+# I/O Tweaks
+queue=/sys/block/*/queue
+echo 0 > "$queue/add_random" 
+echo 0 > "$queue/iostats"
+echo 128 > "$queue/read_ahead_kb"
+echo 64 > "$queue/nr_requests"
+
 # Set Read ahead values
 #dmpts=$(ls /sys/block/*/queue/read_ahead_kb | grep -e dm -e mmc)
 #echo 256 > /sys/block/mmcblk0/bdi/read_ahead_kb
