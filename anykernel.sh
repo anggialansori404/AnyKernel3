@@ -71,6 +71,8 @@ if [ "$product" == "rolex" ]; then
 	rm /vendor/lib/hw/consumerir.default.so
 	cp -f $home/patch/vendor/lib64/hw/consumerir.default.so /vendor/lib64/hw/
 	chmod 0664 /vendor/lib64/hw/consumerir.default.so
+	$bin/magiskpolicy --load sepolicy --save sepolicy "allow hal_ir_default lirc_device chr_file rw_file_perms"
+
 fi
 
 ui_print " "
