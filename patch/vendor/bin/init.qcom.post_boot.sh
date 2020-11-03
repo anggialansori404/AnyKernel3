@@ -1,4 +1,4 @@
-# Custom post boot script by Thago
+# T-Weaks Custom post boot script by Thago
 function 8917_sched_dcvs_eas()
 {
     #governor settings

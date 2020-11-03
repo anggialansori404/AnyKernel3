@@ -61,7 +61,7 @@ chmod 0664 /vendor/etc/thermal-engine.conf
 ui_print "Flashing Custom boot script (T-Weaks)"
 ui_print "Which brings you yet more Optimizations"
 
-# Post boot script
+# T-Weaks Post boot script
 cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
 chmod 0755 /vendor/bin/init.qcom.post_boot.sh
 
