@@ -32,9 +32,6 @@ ui_print "Welcome To Triton"
 ui_print "flavour- Storm Rova(Unified)"
 ui_print "*Built from Proton Clang*"
 ui_print "Linux v4.9 "
-ui_print "*********************"
-ui_print " "
-ui_print " "
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
@@ -45,6 +42,17 @@ chown -R root:root $ramdisk/*;
 
 ## AnyKernel install
 dump_boot;
+
+ui_print "*********************"
+ui_print " "
+ui_print "_____     _ _               "
+ui_print "|_   _| __(_) |_ ___  _ __  "
+ui_print "  | || '__| | __/ _ \| '_ \ "
+ui_print "  | || |  | | || (_) | | | |"
+ui_print "  |_||_|  |_|\__\___/|_| |_|"
+ui_print "         Storm              "
+ui_print "* Thago @ xda-developers ***"
+
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
 
 ui_print " "
@@ -80,7 +88,6 @@ ui_print " "
 ui_print "Done! Don't forget to follow @tboxxx for  more updates"
 ui_print "*** Enjoy! *****"
 ui_print "*******************"
-ui_print "***** Thago @thagoo *******"
 
 write_boot;
 ## end install
