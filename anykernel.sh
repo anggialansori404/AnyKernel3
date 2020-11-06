@@ -73,16 +73,6 @@ ui_print "Which brings you yet more Optimizations"
 cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
 chmod 0755 /vendor/bin/init.qcom.post_boot.sh
 
-# IR patch for rolex 
-product=$(getprop ro.product.device)
-if [ "$product" == "rolex" ]; then
-	rm /vendor/lib/hw/consumerir.default.so
-	cp -f $home/patch/vendor/lib64/hw/consumerir.default.so /vendor/lib64/hw/
-	chmod 0664 /vendor/lib64/hw/consumerir.default.so
-	$bin/magiskpolicy --load sepolicy --save sepolicy "allow hal_ir_default lirc_device chr_file rw_file_perms"
-
-fi
-
 ui_print " "
 ui_print " "
 ui_print "Done! Don't forget to follow @tboxxx for  more updates"
