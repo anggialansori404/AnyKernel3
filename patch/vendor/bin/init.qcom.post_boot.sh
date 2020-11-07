@@ -9,6 +9,9 @@ function 8917_sched_dcvs_eas()
     #default value for hispeed_load is 90, for 8917 it should be 85
     echo 85 > /sys/devices/system/cpu/cpufreq/schedutil/hispeed_load
    echo 'ENERGY_AWARE' > /sys/kernel/debug/sched_features
+   echo 'on property:sys.boot_completed=1' >> /vendor/etc/init/hw/init.qcom.rc
+   echo '	trigger enable-low-power' >> /vendor/etc/init/hw/init.qcom.rc
+   start perfd
 }
 
 function configure_zram_parameters() {
@@ -132,6 +135,10 @@ echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable
 echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable
 echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
+
+#Create PERFD deamon related dirs
+mkdir /data/misc/perfd 0755 root system
+chmod 2755 /data/misc/perfd
 
 # Set Memory parameters
 configure_memory_parameters
