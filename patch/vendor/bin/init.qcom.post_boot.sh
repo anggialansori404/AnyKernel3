@@ -140,6 +140,11 @@ echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 mkdir /data/misc/perfd 0755 root system
 chmod 2755 /data/misc/perfd
 
+echo '598000000' /sys/class/devfreq/1c00000.qcom,kgsl-3d0/max_freq
+echo '598000000' /sys/class/devfreq/soc:qcom,kgsl-busmon/max_freq
+chmod 0444 /sys/class/devfreq/1c00000.qcom,kgsl-3d0/max_freq
+chmod 0444 /sys/class/devfreq/soc:qcom,kgsl-busmon/max_freq
+
 # Set Memory parameters
 configure_memory_parameters
 
