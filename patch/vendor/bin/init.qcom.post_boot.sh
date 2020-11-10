@@ -9,9 +9,18 @@ function 8917_sched_dcvs_eas()
     #default value for hispeed_load is 90, for 8917 it should be 85
     echo 85 > /sys/devices/system/cpu/cpufreq/schedutil/hispeed_load
    echo 'ENERGY_AWARE' > /sys/kernel/debug/sched_features
-   echo 'on property:sys.boot_completed=1' >> /vendor/etc/init/hw/init.qcom.rc
-   echo '	trigger enable-low-power' >> /vendor/etc/init/hw/init.qcom.rc
-   echo '	start perfd' >> /vendor/etc/init/hw/init.qcom.rc
+   echo 1 > /dev/stune/top-app/schedtune.boost
+    echo 1 > /dev/stune/top-app/schedtune.sched_boost
+    echo 1 > /dev/stune/top-app/schedtune.util_est_en
+    echo 1 > /dev/stune/top-app/schedtune.ontime_en
+    echo 1 > /dev/stune/rt/schedtune.boost
+    echo 1 > /dev/stune/rt/schedtune.sched_boost
+    echo 1 > /dev/stune/foreground/schedtune.boost
+    echo 1 > /dev/stune/foreground/schedtune.sched_boost
+    echo 1 > /dev/stune/foreground/schedtune.util_est_en
+    echo 1 > /dev/stune/foreground/schedtune.ontime_en
+    echo 0 > /dev/stune/background/schedtune.boost
+    echo 0 > /dev/stune/schedtune.boost
 }
 
 function configure_zram_parameters() {
@@ -84,7 +93,7 @@ echo 4096 > /proc/sys/vm/min_free_kbytes
 }
 
 # Device releated changes
-echo 0 > /proc/sys/kernel/sched_boost
+echo 1 > /proc/sys/kernel/sched_boost
 echo 20000000 > /proc/sys/kernel/sched_ravg_window
 echo 0 > /sys/module/msm_thermal/core_control/enabled
 
@@ -131,20 +140,22 @@ for dm in $dmpts; do
 done
 
 # Power saving features
-echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable
-echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable
-echo 1 > /sys/devices/soc/${ro.boot.bootdevice}/hibern8_on_idle_enable
+bootdevice
+echo 1 > /sys/devices/platform/soc/${getprop ro.boot.bootdevice}/clkscale_enable
+echo 1 > /sys/devices/platform/soc/${geyprop ro.boot.bootdevice}/clkgate_enable
+echo 1 > /sys/devices/platform/soc/${getprop ro.boot.bootdevice}/hibern8_on_idle_enable
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 
-#Create PERFD deamon related dirs
-mkdir /data/misc/perfd 0755 root system
-chmod 2755 /data/misc/perfd
-
-echo '598000000' /sys/class/devfreq/1c00000.qcom,kgsl-3d0/max_freq
-echo '598000000' /sys/class/devfreq/soc:qcom,kgsl-busmon/max_freq
+echo '598000000' > /sys/class/devfreq/1c00000.qcom,kgsl-3d0/max_freq
+echo '598000000' > /sys/class/devfreq/soc:qcom,kgsl-busmon/max_freq
 chmod 0444 /sys/class/devfreq/1c00000.qcom,kgsl-3d0/max_freq
 chmod 0444 /sys/class/devfreq/soc:qcom,kgsl-busmon/max_freq
 
+#CPUsets
+echo 0-3 > /dev/cpuset/top-app/cpus
+echo 0-3 > /dev/cpuset/foreground/cpus
+echo 1-2 > /dev/cpuset/background/cpus
+echo 2-3 > /dev/cpuset/system-background/cpus
 # Set Memory parameters
 configure_memory_parameters
 
