@@ -11,7 +11,7 @@ function 8917_sched_dcvs_eas()
    echo 'ENERGY_AWARE' > /sys/kernel/debug/sched_features
    echo 'on property:sys.boot_completed=1' >> /vendor/etc/init/hw/init.qcom.rc
    echo '	trigger enable-low-power' >> /vendor/etc/init/hw/init.qcom.rc
-   start perfd
+   echo '	start perfd' >> /vendor/etc/init/hw/init.qcom.rc
 }
 
 function configure_zram_parameters() {
@@ -86,7 +86,7 @@ echo 4096 > /proc/sys/vm/min_free_kbytes
 # Device releated changes
 echo 0 > /proc/sys/kernel/sched_boost
 echo 20000000 > /proc/sys/kernel/sched_ravg_window
-echo 1 > /sys/module/msm_thermal/core_control/enabled
+echo 0 > /sys/module/msm_thermal/core_control/enabled
 
 echo 1 > /sys/devices/system/cpu/cpu0/online
 echo 1 > /sys/devices/system/cpu/cpu1/online
@@ -103,7 +103,7 @@ echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
 # Enable timer migration to little cluster
 echo 1 > /proc/sys/kernel/power_aware_timer_migration
 
-# Addiyional
+# Additional
 echo 0 > /proc/sys/vm/page-cluster
 echo 10 > /proc/sys/vm/stat_interval
 echo 3 > /proc/sys/net/ipv4/tcp_fastopen
