@@ -93,7 +93,7 @@ echo 4096 > /proc/sys/vm/min_free_kbytes
 }
 
 # Device releated changes
-echo 1 > /proc/sys/kernel/sched_boost
+echo 0 > /proc/sys/kernel/sched_boost
 echo 20000000 > /proc/sys/kernel/sched_ravg_window
 echo 0 > /sys/module/msm_thermal/core_control/enabled
 
