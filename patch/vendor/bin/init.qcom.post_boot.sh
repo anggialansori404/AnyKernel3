@@ -122,6 +122,7 @@ echo NEXT_BUDDY > /sys/kernel/debug/sched_features
 echo TTWU_QUEUE > /sys/kernel/debug/sched_features
 echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 echo 1 > /dev/stune/top-app/schedtune.boost
+setprop ro.kernel.ebpf.supported true
 
 # I/O Tweaks
 queue=/sys/block/*/queue
@@ -156,6 +157,7 @@ echo 0-3 > /dev/cpuset/top-app/cpus
 echo 0-3 > /dev/cpuset/foreground/cpus
 echo 1-2 > /dev/cpuset/background/cpus
 echo 2-3 > /dev/cpuset/system-background/cpus
+
 # Set Memory parameters
 configure_memory_parameters
 
