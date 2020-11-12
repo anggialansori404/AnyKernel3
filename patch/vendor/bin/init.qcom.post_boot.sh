@@ -1,4 +1,5 @@
 # T-Weaks Custom post boot script by Thago
+
 function 8917_sched_dcvs_eas()
 {
     #governor settings
@@ -141,7 +142,6 @@ for dm in $dmpts; do
 done
 
 # Power saving features
-bootdevice
 echo 1 > /sys/devices/platform/soc/${getprop ro.boot.bootdevice}/clkscale_enable
 echo 1 > /sys/devices/platform/soc/${geyprop ro.boot.bootdevice}/clkgate_enable
 echo 1 > /sys/devices/platform/soc/${getprop ro.boot.bootdevice}/hibern8_on_idle_enable

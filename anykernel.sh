@@ -55,25 +55,44 @@ ui_print "* Thago @ xda-developers ***"
 
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
 
-ui_print " "
+mount -o remount,rw /vendor
+
 ui_print " "
 ui_print "Flashing Custom Thermal-engine conf"
 ui_print " "
-ui_print " "
 
-mount -o remount,rw /vendor
 # Thermal conf
-cp -f $home/patch/vendor/etc/thermal-engine.conf /vendor/etc/
-chmod 0664 /vendor/etc/thermal-engine.conf
+cp -f $home/patch/vendor/etc/thermal-engine.conf /vendor/etc/thermal-engine-t.conf
 
-ui_print "Flashing Custom boot script (T-Weaks)"
+ui_print "Flashing T-Weaks"
 ui_print "Which brings you yet more Optimizations"
 
 # T-Weaks Post boot script
-cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/
-chmod 0755 /vendor/bin/init.qcom.post_boot.sh
+do_t_weaks() {
+	sed -i '$a chk=$(uname --all | grep -Eio "Triton")' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a if [ "$chk" == "Triton" ]; then' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \	\if [ -f /vendor/etc/thermal-engine-t.conf ]; then' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \ 		\mv /vendor/etc/thermal-engine.conf /vendor/etc/thermal-engine.conf~' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \		\mv /vendor/etc/thermal-engine-t.conf  /vendor/etc/thermal-engine.conf' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \	\ fi' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \         \source /vendor/bin/t-weaks.sh' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a else' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \	\if [ -f /vendor/etc/thermal-engine.conf~ ]; then' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \ 		\mv /vendor/etc/thermal-engine.conf~ /vendor/etc/thermal-engine.conf' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a fi' /vendor/bin/init.qcom.post_boot.sh;
+}
 
-ui_print " "
+cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/t-weaks.sh;
+chmod 0755 /vendor/bin/t-weaks.sh;
+
+cie=$(grep -Eio "Triton" /vendor/bin/init.qcom.post_boot.sh);
+if [ "$cie" == "Triton" ]; then
+        ui_print "T-Weaks already exits"
+else
+        ui_print " Performing T-Weaks"
+        do_t_weaks;
+fi
+
 ui_print " "
 ui_print "Done! Don't forget to follow @tboxxx for  more updates"
 ui_print "*** Enjoy! *****"
