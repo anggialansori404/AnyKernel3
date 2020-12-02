@@ -71,7 +71,12 @@ ui_print "Which brings you yet more Optimizations"
 do_t_weaks() {
 	sed -i '$a chk=$(uname --all | grep -Eio "Triton")' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a if [ "$chk" == "Triton" ]; then' /vendor/bin/init.qcom.post_boot.sh;
-	sed -i '$a \	\if [ -f /vendor/etc/thermal-engine-t.conf ]; then' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \    \ setprop ro.lmk.use_psi true' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \    \ setprop ro.config.low_ram true' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \    \ setprop ro.lmk.psi_complete_stall_ms 200' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \    \ setprop ro.lmk.thrashing_limit 30' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \    \ setprop ro.lmk.swap_util_max 100' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \	\ if [ -f /vendor/etc/thermal-engine-t.conf ]; then' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \ 		\mv /vendor/etc/thermal-engine.conf /vendor/etc/thermal-engine.conf~' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \		\mv /vendor/etc/thermal-engine-t.conf  /vendor/etc/thermal-engine.conf' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \	\ fi' /vendor/bin/init.qcom.post_boot.sh;
