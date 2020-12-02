@@ -69,7 +69,7 @@ ui_print "Which brings you yet more Optimizations"
 
 # T-Weaks Post boot script
 do_t_weaks() {
-	sed -i '$a chk=$(uname --all | grep -Eio "Triton")' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a chk=$(uname -r | grep -Eio Triton)' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a if [ "$chk" == "Triton" ]; then' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \    \ setprop ro.lmk.use_psi true' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \    \ setprop ro.config.low_ram true' /vendor/bin/init.qcom.post_boot.sh;
@@ -84,18 +84,21 @@ do_t_weaks() {
 	sed -i '$a else' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \	\if [ -f /vendor/etc/thermal-engine.conf~ ]; then' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a \ 		\mv /vendor/etc/thermal-engine.conf~ /vendor/etc/thermal-engine.conf' /vendor/bin/init.qcom.post_boot.sh;
+	sed -i '$a \	\fi' /vendor/bin/init.qcom.post_boot.sh;
 	sed -i '$a fi' /vendor/bin/init.qcom.post_boot.sh;
 }
 
 cp -f $home/patch/vendor/bin/init.qcom.post_boot.sh /vendor/bin/t-weaks.sh;
 chmod 0755 /vendor/bin/t-weaks.sh;
 
-cie=$(grep -Eio "Triton" /vendor/bin/init.qcom.post_boot.sh);
-if [ "$cie" == "Triton" ]; then
+cie=$(grep -Eio -m 1 Triton /vendor/bin/init.qcom.post_boot.sh);
+if [ $cie = Triton ]; then
         ui_print "T-Weaks already exits"
 else
-        ui_print " Performing T-Weaks"
+        ui_print "T-Weaks not found, Performing T-Weaks"
         do_t_weaks;
+	sleep 2;
+	ui_print "Done!"
 fi
 
 ui_print " "
