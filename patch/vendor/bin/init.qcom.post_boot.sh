@@ -158,6 +158,16 @@ echo 0-3 > /dev/cpuset/foreground/cpus
 echo 1-2 > /dev/cpuset/background/cpus
 echo 2-3 > /dev/cpuset/system-background/cpus
 
+# Sound control
+chown system:system /sys/kernel/sound_control/headphone_gain
+chmod 0660 /sys/kernel/sound_control/headphone_gain
+chown system:system /sys/kernel/sound_control/mic_gain
+chmod 0660 /sys/kernel/sound_control/mic_gain
+chown system:system /sys/kernel/sound_control/earpiece_gain
+chmod 0660 /sys/kernel/sound_control/earpiece_gain
+chown system:system /sys/kernel/sound_control/speaker_gain
+chmod 0660 /sys/kernel/sound_control/speaker_gain
+
 # Set Memory parameters
 configure_memory_parameters
 
