@@ -4,17 +4,15 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Triton 4.9 kernel by Thago
+kernel.string=Perf+ 4.9 kernel by Hikarinochikara
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=rolex
-device.name2=redmi4a
-device.name3=riva
-device.name4=redmi5a
-device.name5=
+device.name1=riva
+device.name2=redmi5a
+device.name3=
 supported.versions=
 supported.patchlevels=
 '; } # end properties
@@ -28,8 +26,8 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
-ui_print "Welcome To Triton"
-ui_print "flavour- Storm Rova(Unified)"
+ui_print "Welcome To New Perf+"
+ui_print "Perf not die"
 ui_print "*Built from Proton Clang*"
 ui_print "Linux v4.9 "
 
@@ -43,15 +41,9 @@ chown -R root:root $ramdisk/*;
 ## AnyKernel install
 dump_boot;
 
-ui_print "*********************"
-ui_print " "
-ui_print "_____     _ _               "
-ui_print "|_   _| __(_) |_ ___  _ __  "
-ui_print "  | || '__| | __/ _ \| '_ \ "
-ui_print "  | || |  | | || (_) | | | |"
-ui_print "  |_||_|  |_|\__\___/|_| |_|"
-ui_print "         Storm              "
-ui_print "* Thago @ xda-developers ***"
+ui_print "Original is my ninja path"
+ui_print "         Perf!              "
+ui_print "* phpcode404 @ xda-developers ***"
 
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
 
@@ -102,7 +94,8 @@ else
 fi
 
 ui_print " "
-ui_print "Done! Don't forget to follow @tboxxx for  more updates"
+ui_print "Done! Don't forget to follow @Elementooo for  more updates"
+ui_print "Thanks to Thagoo for amazing scripts! "
 ui_print "*** Enjoy! *****"
 ui_print "*******************"
 
