@@ -4,15 +4,17 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Perf+ 4.9 kernel by Hikarinochikara
+kernel.string=Kaze風💨 4.9 kernel by Hikarinochikara
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=riva
-device.name2=redmi5a
-device.name3=
+device.name1=rolex
+device.name2=redmi4a
+device.name3=riva
+device.name4=redmi5a
+device.name5=
 supported.versions=
 supported.patchlevels=
 '; } # end properties
@@ -26,8 +28,8 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
-ui_print "Welcome To New Perf+"
-ui_print "Perf not die"
+ui_print "Welcome To Kaze Kernel Setup"
+ui_print "Kaze not die"
 ui_print "*Built from Proton Clang*"
 ui_print "Linux v4.9 "
 
@@ -42,7 +44,7 @@ chown -R root:root $ramdisk/*;
 dump_boot;
 
 ui_print "Original is my ninja path"
-ui_print "         Perf!              "
+ui_print "         Kaze! Wind! Wind!              "
 ui_print "* phpcode404 @ xda-developers ***"
 
 patch_cmdline androidboot.usbconfigfs androidboot.usbconfigfs=true
